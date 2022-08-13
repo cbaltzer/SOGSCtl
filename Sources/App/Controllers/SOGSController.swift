@@ -54,7 +54,7 @@ struct SOGSController: RouteCollection {
             throw Abort(.notFound)
         }
         
-        let delRoom = try await SOGS().deleteRoom(token: token)
+        try await SOGS().deleteRoom(token: token)
         return .ok
     }
     
@@ -66,10 +66,10 @@ struct SOGSController: RouteCollection {
         try Moderator.validate(content: req)
         let mod = try req.content.decode(Moderator.self)
         
-        let addMod = try await SOGS().addModerator(token: token,
-                                                   moderator: mod.id!,
-                                                   admin: mod.admin ?? false,
-                                                   hidden: mod.hidden ?? false)
+        try await SOGS().addModerator(token: token,
+                                      moderator: mod.id!,
+                                      admin: mod.admin ?? false,
+                                      hidden: mod.hidden ?? false)
         
         return .ok
     }
@@ -82,7 +82,7 @@ struct SOGSController: RouteCollection {
         try Moderator.validate(content: req)
         let mod = try req.content.decode(Moderator.self)
         
-        let delMod = try await SOGS().removeModerator(token: token, moderator: mod.id!)
+        try await SOGS().removeModerator(token: token, moderator: mod.id!)
         return .ok
     }
 
