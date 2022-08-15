@@ -66,7 +66,7 @@ struct SOGS {
         let remove = Command(name: "delete-room",
                              command: sogsBin,
                              arguments: [
-                                "--delete-room", token
+                                "--delete-room", token, "--yes"
                              ])
         
         try await remove.run()
