@@ -15,9 +15,16 @@ struct OutputParser {
         
         var currentRoom: Room? = nil
         var hitNewRoom = false
-   
+        
+        // Add stupid padding for prod
+        let log = "\n\n\(log)"
+        
         log.enumerateLines { line, stop in
-            let line = line.trimmingCharacters(in: .whitespacesAndNewlines)
+            let line = line.trimmingCharacters(in: .whitespacesAndNewlines).trimmingCharacters(in: .controlCharacters)
+            
+            if line.hasPrefix("[32m") {
+                return
+            }
             
             // The empty line before a room listing
             if line == "" {
@@ -82,8 +89,6 @@ struct OutputParser {
         if let room = currentRoom {
             allRooms.append(room)
         }
-        
-        print(allRooms)
         
         return allRooms
     }
