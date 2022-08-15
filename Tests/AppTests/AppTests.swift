@@ -1,5 +1,6 @@
 @testable import App
 import XCTVapor
+import XCTest
 
 final class AppTests: XCTestCase {
     func testRoomParser() throws {
@@ -31,5 +32,6 @@ Moderators: 0 admins (0 hidden), 1 moderators (0 hidden):
         XCTAssertEqual(rooms.first?.url, "http://core.session.codes/sc?public_key=c7fbfa183b601f4d393a43644dae11e5f644db2a18c747865db1ca922e632e32")
         XCTAssertEqual(rooms.first?.moderators?.first, "05a95e35631b2980bf7768597d48e863f40f5851d3c4461f825b701f1d5b97e347")
         XCTAssertEqual(rooms.first?.activeUsers, "1 (1d), 1 (7d), 1 (14d), 1 (30d)")
+        XCTAssertEqual(rooms.first?.messages, 1)
     }
 }
