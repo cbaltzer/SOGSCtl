@@ -24,9 +24,9 @@ struct SOGS {
         
         let allRooms = OutputParser().findRooms(log: await list.log)
         
-        let targetRoom = allRooms.first { r in
+        let targetRoom = allRooms.first(where: { r in
             r.token == token
-        }
+        })
         
         guard let room = targetRoom else {
             throw Abort(.notFound)
