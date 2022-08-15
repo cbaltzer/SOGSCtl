@@ -56,6 +56,26 @@ struct OutputParser {
                     currentRoom?.url = String(url)
                 }
             }
+            
+            if line.hasPrefix("Messages:") {
+                let parts = line.split(separator: " ")
+                if let number = Int(parts[1]) {
+                    currentRoom?.messages = number
+                }
+            }
+            
+            if line.hasPrefix("Active users: ") {
+                let users = line.dropFirst("Active users: ".count)
+                currentRoom?.activeUsers = String(users)
+            }
+            
+            if line.hasPrefix("-") {
+                let parts = line.split(separator: " ")
+                let hash = parts[1]
+                
+                currentRoom?.moderators?.append(String(hash))
+                
+            }
         }
         
         // catch the last one

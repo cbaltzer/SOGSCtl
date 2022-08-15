@@ -14,6 +14,9 @@ struct Room: Content {
     var description: String?
     var url: String?
     var admin: String?
+    var messages: Int? 
+    var activeUsers: String?
+    var moderators: [String]? = []
 }
 
 
